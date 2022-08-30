@@ -2,4 +2,11 @@
     <string name="app_name">FitPlus</string>
     <string name="moto">Make it happen</string>
     <string name="logo_description">FitPlus logo</string>
+    <string name="greeting">Welcome,</string>
+    <string name="lets_start">Let\'s get you started!</string>
+    <string name="username_hint"><i>Username</i></string>
+    <string name="email_hint"><i>example@domain.com</i></string>
+    <string name="password_hint"><i>password</i></string>
+    <string name="confirm_password_hint"><i>confirm password</i></string>
+    <string name="submit_sign_up">CREATE ACCOUNT</string>
 </resources>

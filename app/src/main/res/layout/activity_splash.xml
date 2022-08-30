@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,8 +15,9 @@
         android:layout_marginBottom="18sp"
 
 
+
         android:contentDescription="@string/logo_description"
-        app:srcCompat="@drawable/fitplus_logo_black_main" />
+        app:srcCompat="@drawable/fitplus_logo_main" />
 
     <TextView
         android:layout_width="match_parent"
@@ -26,6 +27,7 @@
         android:textColor="@color/accent"
         android:textStyle="bold"
         android:gravity="center"
+        android:id="@+id/splash_title"
         />
 
     <TextView
@@ -37,4 +39,4 @@
         android:gravity="center"
         android:paddingBottom="40sp"        />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>
