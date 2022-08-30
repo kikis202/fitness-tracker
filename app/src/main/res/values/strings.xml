@@ -9,4 +9,7 @@
     <string name="password_hint"><i>password</i></string>
     <string name="confirm_password_hint"><i>confirm password</i></string>
     <string name="submit_sign_up">CREATE ACCOUNT</string>
+    <string name="login">Login</string>
+    <string name="have_account">"Already have an account? "</string>
+
 </resources>
