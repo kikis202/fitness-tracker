@@ -47,7 +47,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/rounded_secondary_button_bg">
+            android:background="@drawable/rounded_secondary_button_bg"
+            android:id="@+id/linear_layout_button"
+            android:clickable="true"
+            android:focusable="true"
+            >
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
