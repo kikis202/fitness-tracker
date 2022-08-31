@@ -8,8 +8,13 @@
     <string name="email_hint"><i>example@domain.com</i></string>
     <string name="password_hint"><i>password</i></string>
     <string name="confirm_password_hint"><i>confirm password</i></string>
-    <string name="submit_sign_up">CREATE ACCOUNT</string>
+    <string name="create_account_caps">CREATE ACCOUNT</string>
     <string name="login">Login</string>
     <string name="have_account">"Already have an account? "</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="greeting2">Hello,</string>
+    <string name="login_caps">LOGIN</string>
+    <string name="dont_have_account">"Don't have an account? "</string>
+    <string name="create_account">Create Account</string>
 
 </resources>

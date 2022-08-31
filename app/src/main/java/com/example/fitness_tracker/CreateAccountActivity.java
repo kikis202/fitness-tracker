@@ -3,6 +3,7 @@ package com.example.fitness_tracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -41,7 +42,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_c);
 
         createAccountButton.setOnClickListener(v -> createAccount());
-        loginButton.setOnClickListener(v -> finish());
+        loginButton.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class)));
     }
 
     void createAccount() {
@@ -84,18 +85,19 @@ public class CreateAccountActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountActivity.this,
                 new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(CreateAccountActivity.this, "Successfully created account", Toast.LENGTH_SHORT).show();
-                    firebaseAuth.getCurrentUser().sendEmailVerification();
-                    firebaseAuth.signOut();
-                    finish();
-                } else {
-                    Toast.makeText(CreateAccountActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        changeInProgress(false);
+                        if (task.isSuccessful()) {
+                            Utility.showToast(CreateAccountActivity.this, "Successfully created account");
+                            firebaseAuth.getCurrentUser().sendEmailVerification();
+                            firebaseAuth.signOut();
+                            finish();
+                        } else {
+                            Utility.showToast(CreateAccountActivity.this, task.getException().getLocalizedMessage());
+                        }
+                    }
+                });
     }
 
     void changeInProgress(boolean inProgress) {

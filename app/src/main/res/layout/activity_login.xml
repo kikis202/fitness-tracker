@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:padding="16dp"
-    tools:context=".CreateAccountActivity"
+    tools:context=".LoginActivity"
     tools:ignore="ExtraText">
 
     <ImageView
-        android:id="@+id/sign_up_logo"
+        android:id="@+id/login_logo"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_centerHorizontal="true"
@@ -22,14 +22,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sign_up_logo"
+        android:layout_below="@id/login_logo"
         android:orientation="vertical"
         android:id="@+id/greeting_layout">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/greeting"
+            android:text="@string/greeting2"
             android:textStyle="bold"
             android:textColor="@color/accent"
             android:textSize="28sp"
@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lets_start"
+            android:text="@string/welcome_back"
             android:textStyle="bold"
             android:textColor="@color/main_text"
             android:textSize="36sp"
@@ -52,20 +52,7 @@
         android:layout_marginVertical="32dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/username_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:autofillHints="username"
-            android:background="@drawable/rounded_corner"
-            android:hint="@string/username_hint"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/main_text"
-            android:textColorHint="@color/secondary"
 
-            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/email_edit_text"
@@ -97,28 +84,15 @@
 
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/confirm_password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:autofillHints="password"
-            android:background="@drawable/rounded_corner"
-            android:hint="@string/confirm_password_hint"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:textColor="@color/main_text"
-            android:textColorHint="@color/secondary"
 
-            android:textSize="20sp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/submit_sign_up_button"
+            android:id="@+id/submit_login_button"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_marginTop="14dp"
             android:backgroundTint="@color/accent"
-            android:text="@string/create_account_caps"
+            android:text="@string/login_caps"
             android:textColor="@color/secondary"
             android:textSize="16sp" />
 
@@ -142,16 +116,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/have_account"
+            android:text="@string/dont_have_account"
             android:textColor="@color/secondary"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/create_account"
             android:textStyle="bold"
             android:textColor="@color/main_text"
-            android:id="@+id/login_text_view_button"
+            android:id="@+id/create_account_text_view_button"
             />
 
     </LinearLayout>
