@@ -2,6 +2,7 @@
 <resources>
     <color name="primary">#363636</color>
     <color name="secondary">#666666</color>
+    <color name="secondary_transparent">#66666666</color>
     <color name="accent">#fff200</color>
     <color name="main_text">#c3c3c3</color>
     <color name="black">#FF000000</color>
