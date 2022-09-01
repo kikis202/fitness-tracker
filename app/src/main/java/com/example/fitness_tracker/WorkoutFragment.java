@@ -1,5 +1,6 @@
 package com.example.fitness_tracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,6 @@ public class WorkoutFragment extends Fragment {
     }
 
     void startEmptyWorkout() {
-        Utility.showToast(getActivity(), "Click");
+        startActivity(new Intent(getActivity(), WorkoutDetailsActivity.class));
     }
 }

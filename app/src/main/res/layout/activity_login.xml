@@ -1,132 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    android:padding="16dp"
-    tools:context=".LoginActivity"
-    tools:ignore="ExtraText">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/login_logo"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginVertical="32dp"
-        android:contentDescription="@string/logo_description"
-        android:src="@drawable/fitplus_logo_main" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login_logo"
-        android:orientation="vertical"
-        android:id="@+id/greeting_layout">
-
-        <TextView
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/greeting2"
-            android:textStyle="bold"
-            android:textColor="@color/accent"
-            android:textSize="28sp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_back"
-            android:textStyle="bold"
-            android:textColor="@color/main_text"
-            android:textSize="36sp"
-            />
-    </LinearLayout>
+            android:layout_height="match_parent"
 
-    <LinearLayout
-        android:id="@+id/form_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/greeting_layout"
-        android:layout_marginVertical="32dp"
-        android:orientation="vertical">
+            android:padding="16dp"
+            tools:context=".LoginActivity"
+            tools:ignore="ExtraText">
 
+            <ImageView
+                android:id="@+id/login_logo"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_centerHorizontal="true"
 
+                android:layout_marginVertical="32dp"
+                android:contentDescription="@string/logo_description"
+                android:src="@drawable/fitplus_logo_main" />
 
-        <EditText
-            android:id="@+id/email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:autofillHints="emailAddress"
-            android:background="@drawable/rounded_corner"
-            android:hint="@string/email_hint"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
-            android:textColor="@color/main_text"
-            android:textColorHint="@color/secondary"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_logo"
+                android:orientation="vertical"
+                android:id="@+id/greeting_layout">
 
-            android:textSize="20sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/greeting2"
+                    android:textStyle="bold"
+                    android:textColor="@color/accent"
+                    android:textSize="28sp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_back"
+                    android:textStyle="bold"
+                    android:textColor="@color/main_text"
+                    android:textSize="36sp"
+                    />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:autofillHints="password"
-            android:background="@drawable/rounded_corner"
-            android:hint="@string/password_hint"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:textColor="@color/main_text"
-            android:textColorHint="@color/secondary"
-
-            android:textSize="20sp" />
+            <LinearLayout
+                android:id="@+id/form_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/greeting_layout"
+                android:layout_marginVertical="32dp"
+                android:orientation="vertical">
 
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/submit_login_button"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="14dp"
-            android:backgroundTint="@color/accent"
-            android:text="@string/login_caps"
-            android:textColor="@color/secondary"
-            android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints="emailAddress"
+                    android:background="@drawable/rounded_corner"
+                    android:hint="@string/email_hint"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp"
+                    android:textColor="@color/main_text"
+                    android:textColorHint="@color/secondary"
 
-        <ProgressBar
-            android:id="@+id/progress_c"
-            android:layout_width="32dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="14dp"
-            android:visibility="gone" />
+                    android:textSize="20sp" />
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints="password"
+                    android:background="@drawable/rounded_corner"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="@color/main_text"
+                    android:textColorHint="@color/secondary"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/form_layout"
-        android:gravity="center"
-        android:orientation="horizontal">
+                    android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dont_have_account"
-            android:textColor="@color/secondary" />
 
-        <TextView
-            android:id="@+id/create_account_text_view_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create_account"
-            android:textColor="@color/main_text"
-            android:textStyle="bold" />
 
-    </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/submit_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="14dp"
+                    android:backgroundTint="@color/accent"
+                    android:text="@string/login_caps"
+                    android:textColor="@color/secondary"
+                    android:textSize="16sp" />
 
-</RelativeLayout>
+                <ProgressBar
+                    android:id="@+id/progress_c"
+                    android:layout_width="32dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/form_layout"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dont_have_account"
+                    android:textColor="@color/secondary" />
+
+                <TextView
+                    android:id="@+id/create_account_text_view_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_account"
+                    android:textColor="@color/main_text"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+</ScrollView>
