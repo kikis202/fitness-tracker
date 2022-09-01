@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "976553559476",
+    "firebase_url": "https://fitness-tracker-45b64-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "fitness-tracker-45b64",
     "storage_bucket": "fitness-tracker-45b64.appspot.com"
   },
