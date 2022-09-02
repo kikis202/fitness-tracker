@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_c);
 
         createAccountButton.setOnClickListener(v -> createAccount());
-        loginButton.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class)));
+        loginButton.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)));
     }
 
     void createAccount() {
@@ -89,9 +91,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         changeInProgress(false);
                         if (task.isSuccessful()) {
-                            Utility.showToast(CreateAccountActivity.this, "Successfully created account");
-                            firebaseAuth.getCurrentUser().sendEmailVerification();
+                            FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                            currentUser.sendEmailVerification();
                             firebaseAuth.signOut();
+                            startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else {
                             Utility.showToast(CreateAccountActivity.this, task.getException().getLocalizedMessage());
