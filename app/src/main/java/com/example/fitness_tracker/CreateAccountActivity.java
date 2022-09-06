@@ -80,6 +80,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         String password = passwordEditText.getText().toString().trim();
         String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
+
         if (username.length() < 4) {
             usernameEditText.setError("Username must be at least 4 characters");
             usernameEditText.requestFocus();
