@@ -51,7 +51,15 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         progressBar = (ProgressBar) findViewById(R.id.progress_c);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+           if(bundle.getString("some") !=null){
+               Toast.makeText(getApplicationContext(),
+                       "data: " + bundle.getString("some"),
+                       Toast.LENGTH_SHORT).show();
+           }
 
+        }
 
     }
 
@@ -130,96 +138,25 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(CreateAccountActivity.this, "User kas been registered successfully!", Toast.LENGTH_LONG).show();
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(CreateAccountActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
-                                            }else{
-                                                Toast.makeText(CreateAccountActivity.this, "Fail to register! Try again!", Toast.LENGTH_LONG).show();
+                                            }else {
+                                                Toast.makeText(CreateAccountActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
                                             }
                                         }
                                     });
+
                         }else{
-                            Toast.makeText(CreateAccountActivity.this, "Fail to register the Userx   ! Try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CreateAccountActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
-
                 });
     }
 
-    /*boolean validateData(String username, String email, String password, String confirmPassword) {
-        // Validate user input
-        String username = usernameEditText.getText().toString().trim();
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
-        if (username.length() < 4) {
-            usernameEditText.setError("Username must be at least 4 characters");
-            usernameEditText.requestFocus();
-            return;
-        }
-        if (username.isEmpty()){
-            usernameEditText.setError("Username is required!");
-            usernameEditText.requestFocus();
-            return;
-        }
-        if (email.isEmpty()){
-            emailEditText.setError("Email is required!");
-            emailEditText.requestFocus();
-            return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.requestFocus();
-            return;
-        }
-        if (password.isEmpty()){
-            passwordEditText.setError("Password is required");
-            passwordEditText.requestFocus();
-            return;
-        }
-        if (password.length() < 7) {
-            passwordEditText.setError("Password must be at least 7 characters");
-            passwordEditText.requestFocus();
-            return;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            confirmPasswordEditText.setError("Passwords doesn't match");
-            confirmPasswordEditText.setText("");
-            return;
-        }
-
-        progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            User user = new User(username, email);
-
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(CreateAccountActivity.this, "User kas been registered successfully!", Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.GONE);
-                                            }else{
-                                                Toast.makeText(CreateAccountActivity.this, "Fail to register! Try again!", Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.GONE);
-                                            }
-                                        }
-                                    });
-                        }else{
-                            Toast.makeText(CreateAccountActivity.this, "Fail to register the Userx   ! Try again!", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
 
     /*void createAccountInFirebase(String username, String email, String password) {
         changeInProgress(true);
