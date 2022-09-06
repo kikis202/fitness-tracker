@@ -8,8 +8,8 @@
     <string name="username"><span>Username</span></string>
     <string name="description"><span>Description</span></string>
     <string name="email_hint"><i>example@domain.com</i></string>
-    <string name="password_hint"><i>password</i></string>
-    <string name="confirm_password_hint"><i>confirm password</i></string>
+    <string name="password_hint"><i>Password</i></string>
+    <string name="confirm_password_hint"><i>Confirm Password</i></string>
     <string name="create_account_caps">CREATE ACCOUNT</string>
     <string name="login">Login</string>
     <string name="have_account">"Already have an account? "</string>
