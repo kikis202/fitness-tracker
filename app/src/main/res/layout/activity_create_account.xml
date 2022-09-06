@@ -70,20 +70,20 @@
 
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/email_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:autofillHints="emailAddress"
-                android:background="@drawable/rounded_corner"
-                android:hint="@string/email_hint"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textColor="@color/main_text"
-                android:textColorHint="@color/secondary"
+<!--            <EditText-->
+<!--                android:id="@+id/email_edit_text"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="12dp"-->
+<!--                android:autofillHints="emailAddress"-->
+<!--                android:background="@drawable/rounded_corner"-->
+<!--                android:hint="@string/email_hint"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:padding="12dp"-->
+<!--                android:textColor="@color/main_text"-->
+<!--                android:textColorHint="@color/secondary"-->
 
-                android:textSize="20sp" />
+<!--                android:textSize="20sp" />-->
 
             <EditText
                 android:id="@+id/password_edit_text"
