@@ -7,20 +7,19 @@
     tools:context=".WorkoutFragment">
 
     <LinearLayout
+        android:id="@+id/workout_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:id="@+id/workout_header"
-        android:gravity="center"
-        >
+        android:gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
             android:text="@string/workout_header"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:paddingVertical="16dp"
-            />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
