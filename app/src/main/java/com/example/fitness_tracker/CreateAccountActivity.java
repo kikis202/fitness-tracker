@@ -39,7 +39,9 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         passwordEditText = (EditText) findViewById(R.id.password_edit_text);
         confirmPasswordEditText = (EditText) findViewById(R.id.confirm_password_edit_text);
 
+        loginButton = findViewById(R.id.login_text_view_button);
 
+        progressBar = findViewById(R.id.progress_c);
 
         createAccountButton = (Button) findViewById(R.id.submit_sign_up_button);
         createAccountButton.setOnClickListener(this);
@@ -49,7 +51,15 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         progressBar = (ProgressBar) findViewById(R.id.progress_c);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+           if(bundle.getString("some") !=null){
+               Toast.makeText(getApplicationContext(),
+                       "data: " + bundle.getString("some"),
+                       Toast.LENGTH_SHORT).show();
+           }
 
+        }
 
     }
 
@@ -77,6 +87,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String confirmPassword = confirmPasswordEditText.getText().toString().trim();
+
 
         if (username.length() < 4) {
             usernameEditText.setError("Username must be at least 4 characters");
@@ -127,46 +138,25 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(CreateAccountActivity.this, "User kas been registered successfully!", Toast.LENGTH_LONG).show();
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(CreateAccountActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
-                                            }else{
-                                                Toast.makeText(CreateAccountActivity.this, "Fail to register! Try again!", Toast.LENGTH_LONG).show();
+                                            }else {
+                                                Toast.makeText(CreateAccountActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
                                             }
                                         }
                                     });
+
                         }else{
-                            Toast.makeText(CreateAccountActivity.this, "Fail to register the Userx   ! Try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CreateAccountActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
-
                 });
     }
 
-    /*boolean validateData(String username, String email, String password, String confirmPassword) {
-        // Validate user input
-        if (username.length() < 4) {
-            usernameEditText.setError("Username must be at least 4 characters");
-            return false;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.setError("Email is invalid");
-            return false;
-        }
-        if (password.length() < 7) {
-            passwordEditText.setError("Password must be at least 7 characters");
-            return false;
-        }
-        if (!password.equals(confirmPassword)) {
-            confirmPasswordEditText.setError("Passwords doesn't match");
-            confirmPasswordEditText.setText("");
-            return false;
-        }
-        return true;
-    }*/
+
 
     /*void createAccountInFirebase(String username, String email, String password) {
         changeInProgress(true);
