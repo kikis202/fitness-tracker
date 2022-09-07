@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,7 +29,19 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
         deleteWorkoutButton = findViewById(R.id.delete_workout_button);
         saveWorkoutButton = findViewById(R.id.save_workout_button);
 
-        addExerciseButton.setOnClickListener(v -> testFunc());
+        addExerciseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openExerciseList();
+            }
+        });
+
+
+
+    }
+    public void openExerciseList(){
+        Intent intent = new Intent(this, ExerciseList.class);
+        startActivity(intent);
     }
 
     void testFunc(){
