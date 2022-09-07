@@ -117,6 +117,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
         if (dbHelper.checkUsername(username)) {
             Utility.showToast(CreateAccountActivity.this, "User already exists");
+            return false;
         }
         return true;
     }
