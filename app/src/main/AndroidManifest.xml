@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Fitnesstracker"
         tools:targetApi="31">
         <activity
-            android:name=".ExerciseList"
+            android:name=".ExerciseListActivity"
             android:exported="false" />
         <activity
             android:name=".WorkoutDetailsActivity"
