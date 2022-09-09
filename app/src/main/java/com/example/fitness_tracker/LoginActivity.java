@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
         if (result.verified) {
             Utility.showToast(LoginActivity.this, "Login successful");
+            SaveSharedPreference.setUserName(LoginActivity.this, username);
             startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
             finish();
         } else {
