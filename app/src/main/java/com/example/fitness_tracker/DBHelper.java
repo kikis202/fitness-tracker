@@ -19,12 +19,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Create table sql statements
         String sql_create_users = "CREATE TABLE users(username TEXT primary key, password TEXT)";
-        String sql_create_user_profiles = "CREATE TABLE user_profiles(id INTEGER primary key autoincrement, user_id TEXT not null, description TEXT, profile_pic_name TEXT, FOREIGN KEY(users_id) REFERENCES users_id(username))";
+        String sql_create_user_profiles = "CREATE TABLE user_profiles(id INTEGER primary key autoincrement, user_id TEXT not null, description TEXT, profile_pic_name TEXT, FOREIGN KEY(user_id) REFERENCES users(username))";
         String sql_create_tracking_type = "CREATE TABLE tracking_types(id INTEGER primary key autoincrement, reps INTEGER, weight INTEGER, distance INTEGER, time INTEGER)";
         String sql_create_exercises = "CREATE TABLE exercises(id INTEGER primary key autoincrement, title TEXT not null, description TEXT, image_name TEXT, tracking_type_id INTEGER not null, FOREIGN KEY(tracking_type_id) REFERENCES tracking_types(id))";
-        String sql_create_workouts = "CREATE TABLE workouts(id INTEGER primary key autoincrement, user_id TEXT not null, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(users_id) REFERENCES user_id(username))";
+        String sql_create_workouts = "CREATE TABLE workouts(id INTEGER primary key autoincrement, user_id TEXT not null, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(username))";
         String sql_create_workout_exercises = "CREATE TABLE workout_exercises(id INTEGER primary key autoincrement, workout_id INTEGER not null, exercise_id INTEGER not null, FOREIGN KEY(workout_id) REFERENCES workouts(id),FOREIGN KEY(exercise_id) REFERENCES exercises(id))";
-        String sql_create_workout_sets = "CREATE TABLE workout_sets(id INTEGER primary key autoincrement, workout_exercise_id INTEGER, reps INTEGER, weight INTEGER, distance INTEGER, time INTEGER, FOREIGN KEY(exercise_id) REFERENCES exercises(id))";
+        String sql_create_workout_sets = "CREATE TABLE workout_sets(id INTEGER primary key autoincrement, workout_exercise_id INTEGER, reps INTEGER, weight INTEGER, distance INTEGER, time INTEGER, FOREIGN KEY(workout_exercise_id) REFERENCES workout_exercises(id))";
 
         // Create table sql statements executed
         sqLiteDatabase.execSQL(sql_create_users);
@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_create_workout_sets);
 
         // Adds default Tracking parameters and Exercises
-        seedDB();
+        seedDB(sqLiteDatabase);
     }
 
     @Override
@@ -58,8 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_drop_users);
     }
 
-    public boolean insertUserProfile(String username) {
-        SQLiteDatabase myDB = this.getWritableDatabase();
+    public boolean insertUserProfile(String username, SQLiteDatabase myDB) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_id", username);
         contentValues.put("description", "");
@@ -75,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("password", password);
         long result = myDB.insert("users", null, contentValues);
         if (result == -1) return false;
-        return insertUserProfile(username);
+        return insertUserProfile(username, myDB);
     }
 
     public boolean insertTrackingType(int reps, int weight, int distance, int time) {
@@ -94,7 +93,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public boolean seedTrackingTypes() {
+    public boolean insertTrackingTypeRecursive(SQLiteDatabase myDB, int reps, int weight, int distance, int time) {
+        // Tracking type id's:
+        // 1 - reps & weight
+        // 2 - reps
+        // 3 - distance & time
+        // 4 - time
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("reps", reps);
+        contentValues.put("weight", weight);
+        contentValues.put("distance", distance);
+        contentValues.put("time", time);
+        long result = myDB.insert("tracking_types", null, contentValues);
+        return result != -1;
+    }
+
+    public boolean seedTrackingTypes(SQLiteDatabase myDB) {
         int[] reps = {1, 1, 0, 0};
         int[] weight = {1, 0, 0, 0};
         int[] distance = {0, 0, 1, 0};
@@ -102,7 +116,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         boolean successful_entry;
         for (int i = 0; i < reps.length; i++) {
-            successful_entry = insertTrackingType(reps[i], weight[i], distance[i], time[i]);
+            successful_entry = insertTrackingTypeRecursive(myDB, reps[i], weight[i], distance[i], time[i]);
             if (!successful_entry) return false;
         }
 
@@ -111,6 +125,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean insertExercise(String title, String description, String image_name, int tracking_type_id) {
         SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("title", title);
+        contentValues.put("description", description);
+        contentValues.put("image_name", image_name);
+        contentValues.put("tracking_type_id", tracking_type_id);
+        long result = myDB.insert("exercises", null, contentValues);
+        return result != -1;
+    }
+
+    public boolean insertExerciseRecursive(SQLiteDatabase myDB, String title, String description, String image_name, int tracking_type_id) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("description", description);
@@ -149,7 +173,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public boolean seedExercises() {
+    public boolean seedExercises(SQLiteDatabase myDB) {
         // Hard coded entries
         String description_placeholder = "This is the default description, the real description will be set in the future";
         String[] titles = {
@@ -173,15 +197,15 @@ public class DBHelper extends SQLiteOpenHelper {
         // Seeding db
         boolean successful_entry;
         for (int i = 0; i < titles.length; i++) {
-            successful_entry = insertExercise(titles[i], descriptions[i], image_names[i], tracking_type_id[i]);
+            successful_entry = insertExerciseRecursive(myDB, titles[i], descriptions[i], image_names[i], tracking_type_id[i]);
             if (!successful_entry) return false;
         }
         return true;
     }
 
-    public boolean seedDB() {
-        if(!seedTrackingTypes()) return false;
-        if(!seedExercises()) return false;
+    public boolean seedDB(SQLiteDatabase myDB) {
+        if(!seedTrackingTypes(myDB)) return false;
+        if(!seedExercises(myDB)) return false;
         return true;
     }
 

@@ -145,6 +145,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
+
             } else {
                 // Unsuccessful account creation
                 Utility.showToast(CreateAccountActivity.this, "Registration failed");
