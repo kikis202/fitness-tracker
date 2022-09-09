@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class ExerciseListActivity extends AppCompatActivity {
 
     int[] newArray;
+
+
 
 
     @Override
@@ -37,6 +40,7 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     }
     public void Imagebuttonclicked(View view) {
+        final TextView firstEx = (TextView) findViewById(R.id.firstEx);
 
         for (int i = 0; i< newArray.length; i++){
 
@@ -44,7 +48,7 @@ public class ExerciseListActivity extends AppCompatActivity {
             int value = i+1;
                 Log.i("FIRST", String.valueOf(value));
                 Intent intent = new Intent(ExerciseListActivity.this, WorkoutDetailsActivity.class);
-
+                intent.putExtra("first", firstEx.getText().toString());
                 startActivity(intent);
 
 

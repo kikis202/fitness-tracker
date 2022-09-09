@@ -18,10 +18,17 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
     LinearLayout addExerciseButton, deleteWorkoutButton;
     TextView saveWorkoutButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_details);
+
+        TextView firstView = (TextView) findViewById(R.id.firstView);
+
+        /*Bundle bundle = getIntent().getExtras();
+        String data = bundle.getString("first");
+        firstView.setText(data);*/
 
         addExerciseButton = findViewById(R.id.add_exercise_button);
         deleteWorkoutButton = findViewById(R.id.delete_workout_button);
@@ -33,6 +40,10 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
                 openExerciseList();
             }
         });
+
+
+
+
 
 
 

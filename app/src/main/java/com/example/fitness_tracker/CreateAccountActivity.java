@@ -113,7 +113,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (!password.equals(confirmPassword)) {
             confirmPasswordEditText.setError("Passwords doesn't match");
             confirmPasswordEditText.setText("");
-            return;
+            return false;
         }
         if (dbHelper.checkUsername(username)) {
             Utility.showToast(CreateAccountActivity.this, "User already exists");
