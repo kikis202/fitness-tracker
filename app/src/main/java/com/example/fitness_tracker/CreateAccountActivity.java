@@ -48,7 +48,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_text_view_button);
         createAccountButton = findViewById(R.id.submit_sign_up_button);
 
-        progressBar = findViewById(R.id.progress_c);
 
         loginButton = (TextView) findViewById(R.id.login_text_view_button);
         loginButton.setOnClickListener(v -> startActivity(new Intent(CreateAccountActivity.this, LoginActivity.class)));
@@ -110,6 +109,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             passwordEditText.requestFocus();
             return false;
         }
+
         if (!password.equals(confirmPassword)) {
             confirmPasswordEditText.setError("Passwords doesn't match");
             confirmPasswordEditText.setText("");
