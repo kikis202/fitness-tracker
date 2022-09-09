@@ -45,17 +45,14 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        avatar = getView().findViewById(R.id.avatarView);
-        userName = getView().findViewById(R.id.userNameView);
-        description = getView().findViewById(R.id.descriptionView);
+
 
         logout = (Button) getView().findViewById(R.id.signOut);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
+                SaveSharedPreference.setUserName(getActivity(), "");
                 Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
                 intent.putExtra("some", "User Logged Out");
                 startActivity(intent);
@@ -63,16 +60,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
-        if (firebaseAuth.getCurrentUser() != null) {
-            //userName.setText(firebaseAuth.getCurrentUser().getDisplayName());
-            // userName.setText(firebaseAuth.getCurrentUser().getDisplayName());
-            // Glide.with(this).load(firebaseAuth.getCurrentUser().getPhotoUrl().toString()).into(avatar);
-
-            /// Set the avatar, username and description
-
-
-        }
 
     }
 }
