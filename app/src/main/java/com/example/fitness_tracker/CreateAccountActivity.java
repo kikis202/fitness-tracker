@@ -37,7 +37,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     boolean validateData(String username, String password, String confirmPassword) {
-        if (username.length() <= 4) {
+        if (username.length() < 4) {
             usernameEditText.setError("Username must be at least 4 characters");
             usernameEditText.requestFocus();
             return false;
@@ -47,7 +47,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             passwordEditText.requestFocus();
             return false;
         }
-        if (password.length() <= 7) {
+        if (password.length() < 7) {
             passwordEditText.setError("Password must be at least 7 characters");
             passwordEditText.requestFocus();
             return false;
