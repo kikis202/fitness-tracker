@@ -14,8 +14,20 @@
         <entry key="..\:/Users/danii/fitness-tracker/app/src/main/res/layout/activity_create_account.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/danii/fitness-tracker/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/danii/fitness-tracker/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_profile_page.xml" value="0.15489130434782608" />
-        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_settings.xml" value="0.15489130434782608" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.194" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_create_account.xml" value="0.15489130434782608" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_main.xml" value="0.12395833333333334" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_main2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_profile_page.xml" value="0.176" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_settings.xml" value="0.264" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_settings_edit.xml" value="0.13451086956521738" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_workout_details.xml" value="0.16" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/activity_zalupa.xml" value="0.253125" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Users/virtu/AndroidStudioProjects/fitness-tracker2/app/src/main/res/layout/fragment_workout.xml" value="0.15489130434782608" />
       </map>
     </option>
   </component>

@@ -18,6 +18,7 @@ public class ProfileFragment extends Fragment {
     ImageView avatar;
     TextView userName, description;
     private Button logout;
+    private ImageView settings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,12 @@ public class ProfileFragment extends Fragment {
         userName = getView().findViewById(R.id.userNameView);
         description = getView().findViewById(R.id.descriptionView);
         logout = (Button) getView().findViewById(R.id.signOut);
-
+        settings = (ImageView) getView().findViewById(R.id.profile_settings_button);
+        DBHelper dbHelper = new DBHelper(this.getContext());
+        dbHelper.setDescription(SaveSharedPreference.getUserName(this.getContext()),"123");
+        description.setText(dbHelper.getDescription(SaveSharedPreference.getUserName(this.getContext())));
         userName.setText(SaveSharedPreference.getUserName(this.getContext()));
+        settings.setOnClickListener(v -> startActivity(new Intent(ProfileFragment.this.getContext(), SettingsActivity.class)));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

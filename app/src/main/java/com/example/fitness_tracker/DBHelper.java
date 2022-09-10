@@ -214,8 +214,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean seedDB(SQLiteDatabase myDB) {
-        if(!seedTrackingTypes(myDB)) return false;
-        if(!seedExercises(myDB)) return false;
+        if (!seedTrackingTypes(myDB)) return false;
+        if (!seedExercises(myDB)) return false;
         return true;
     }
 
@@ -227,6 +227,29 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         myDB.close();
         return userExists;
+    }
+
+    @SuppressLint("Range")
+    public void setDescription(String username, String description) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("description", description);
+        myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
+    }
+
+    @SuppressLint("Range")
+    public String getDescription(String username) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String sql = "SELECT description FROM user_profiles WHERE user_id = ?";
+        Cursor cursor = myDB.rawQuery(sql, new String[]{username});
+        if (cursor.moveToFirst()) {
+            String text = cursor.getString(cursor.getColumnIndex("description"));
+            cursor.close();
+            myDB.close();
+            return text;
+        }
+        myDB.close();
+        return "";
     }
 
     @SuppressLint("Range")
