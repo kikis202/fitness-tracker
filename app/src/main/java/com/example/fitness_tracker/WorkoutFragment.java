@@ -48,6 +48,11 @@ public class WorkoutFragment extends Fragment {
     }
 
     void startEmptyWorkout() {
+        DBHelper dbHelper = new DBHelper(getActivity());
+        int id = (int) dbHelper.insertWorkout(SaveSharedPreference.getUserName(getActivity()));
+        SaveSharedPreference.setActiveWorkoutID(getActivity() , id);
+
+
         startActivity(new Intent(getActivity(), WorkoutDetailsActivity.class));
     }
 }

@@ -151,33 +151,29 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public boolean insertWorkout(String username){
+    public long insertWorkout(String username){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_id", username);
-        long result = myDB.insert("workouts", null, contentValues);
+        long id = myDB.insert("workouts", null, contentValues);
         myDB.close();
-        return result != -1;
+        return id;
     }
 
-    public boolean insertWorkoutExercise(int workoutID, int exerciseID) {
+    public long insertWorkoutExercise(int workoutID, int exerciseID) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("workout_id", workoutID);
         contentValues.put("exercise_id", exerciseID);
         long result = myDB.insert("workout_exercises", null, contentValues);
         myDB.close();
-        return result != -1;
+        return result;
     }
 
-    public boolean insertWorkoutSet(int workout_exercise_id, int reps, int weight, int distance, int time) {
+    public boolean insertWorkoutSet(int workout_exercise_id) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("workout_exercise_id", workout_exercise_id);
-        contentValues.put("reps", reps);
-        contentValues.put("weight", weight);
-        contentValues.put("distance", distance);
-        contentValues.put("time", time);
         long result = myDB.insert("workout_sets", null, contentValues);
         myDB.close();
         return result != -1;
