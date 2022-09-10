@@ -2,19 +2,26 @@ package com.example.fitness_tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExerciseListActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
-    int[] newArray;
-
-
-
+    public ExerciseListActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,35 +31,22 @@ public class ExerciseListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
+        recyclerView = findViewById(R.id.rv_exerciseList);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        DBHelper dbHelper = new DBHelper(ExerciseListActivity.this);
+        List<Exercise> exercises = dbHelper.getExerciseList();
+
+        mAdapter = new ExerciseViewAdapter(exercises, ExerciseListActivity.this);
+        recyclerView.setAdapter(mAdapter);
 
 
-        newArray = new int[]{
-
-                R.id.backExtension,R.id.benchPress,R.id.bentOverRowBarbell,R.id.bicycleCrunches, R.id.concentrationCurls, R.id.crunches,
-                R.id.dips, R.id.dumbbellCurl, R.id.dumbbellFly, R.id.dumbbellBenchPress, R.id.hangingKneeRaise, R.id.inclineBenchPress,
-                R.id.lateralDumbbellRaises, R.id.legCurl, R.id.legExtension, R.id.legPress, R.id.legRaises, R.id.overheadTricepsPress,
-                R.id.plank, R.id.preacherCurl, R.id.pullDownStock, R.id.pullUp, R.id.pushUp, R.id.rearDeltRaise, R.id.seatedRowMachine,
-                R.id.shoulderPress, R.id.sidePlank, R.id.squats, R.id.straightBarCurl, R.id.straightLegDeadlifts, R.id.sitUps, R.id.tricepKickbacks,
-                R.id.tricepPress, R.id.tricepPullovers, R.id.tricepPulloversWithDumbbell, R.id.uprightRows, R.id.walkingLungesDumbbells,
-                R.id.weightedCalfRaises,
-
-        };
-
-    }
-    public void Imagebuttonclicked(View view) {
-        final TextView firstEx = (TextView) findViewById(R.id.firstEx);
-
-        for (int i = 0; i< newArray.length; i++){
-
-            if(view.getId() == newArray[i]){
-            int value = i+1;
-                Log.i("FIRST", String.valueOf(value));
-                Intent intent = new Intent(ExerciseListActivity.this, WorkoutDetailsActivity.class);
-                intent.putExtra("first", firstEx.getText().toString());
-                startActivity(intent);
 
 
-            }
-        }
+
+        ArrayAdapter exerciseArrayAddapter = new ArrayAdapter<Exercise>(ExerciseListActivity.this, android.R.layout.simple_list_item_1);
     }
 }

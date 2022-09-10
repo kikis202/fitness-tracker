@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public final static String DBNAME = "FitPlus.db";
@@ -37,6 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Adds default Tracking parameters and Exercises
         seedDB(sqLiteDatabase);
+        sqLiteDatabase.close();
     }
 
     @Override
@@ -64,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("description", "");
         contentValues.put("profile_pic_name", "default");
         long result = myDB.insert("user_profiles", null, contentValues);
+        myDB.close();
         return result != -1;
     }
 
@@ -90,6 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("distance", distance);
         contentValues.put("time", time);
         long result = myDB.insert("tracking_types", null, contentValues);
+        myDB.close();
         return result != -1;
     }
 
@@ -131,6 +137,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("image_name", image_name);
         contentValues.put("tracking_type_id", tracking_type_id);
         long result = myDB.insert("exercises", null, contentValues);
+        myDB.close();
         return result != -1;
     }
 
@@ -149,6 +156,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_id", username);
         long result = myDB.insert("workouts", null, contentValues);
+        myDB.close();
         return result != -1;
     }
 
@@ -158,6 +166,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("workout_id", workoutID);
         contentValues.put("exercise_id", exerciseID);
         long result = myDB.insert("workout_exercises", null, contentValues);
+        myDB.close();
         return result != -1;
     }
 
@@ -170,6 +179,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("distance", distance);
         contentValues.put("time", time);
         long result = myDB.insert("workout_sets", null, contentValues);
+        myDB.close();
         return result != -1;
     }
 
@@ -215,6 +225,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = myDB.rawQuery(sql, new String[]{username});
         boolean userExists = cursor.getCount() > 0;
         cursor.close();
+        myDB.close();
         return userExists;
     }
 
@@ -226,8 +237,35 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String hashedPassword = cursor.getString(cursor.getColumnIndex("password"));
             cursor.close();
+            myDB.close();
             return hashedPassword;
         }
+        myDB.close();
         return "";
+    }
+
+    public List<Exercise> getExerciseList() {
+        List<Exercise> returnList = new ArrayList<>();
+
+        String sql = "SELECT * FROM exercises";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = myDB.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int exerciseID = cursor.getInt(0);
+                String exerciseTitle = cursor.getString(1);
+                String exerciseDescription = cursor.getString(2);
+                String exerciseImageName = cursor.getString(3);
+                int exerciseTrackingType = cursor.getInt(4);
+                Exercise newExercise = new Exercise(exerciseID, exerciseTrackingType, exerciseTitle, exerciseDescription, exerciseImageName);
+                returnList.add(newExercise);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        myDB.close();
+        return returnList;
     }
 }
