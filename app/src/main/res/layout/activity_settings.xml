@@ -18,14 +18,15 @@
             android:layout_height="50dp"
             android:padding="14dp"
             android:src="@drawable/back_btn" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = "Settings"
             android:layout_centerInParent="true"
+            android:text="Settings"
             android:textColor="@color/main_text"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <ScrollView
@@ -102,54 +103,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="50dp"
                         android:text="Account Password"
-                        android:textColor="@color/main_text"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-                //Units
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/round_back_yellow10_20"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_baseline_lock_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="50dp"
-                        android:text="Display Units"
-                        android:textColor="@color/main_text"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-                //FAQ
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/round_back_yellow10_20"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_baseline_lock_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="50dp"
-                        android:text="FAQ"
                         android:textColor="@color/main_text"
                         android:textStyle="bold" />
 
