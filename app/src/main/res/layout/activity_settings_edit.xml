@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/primary"
-    tools:context=".SettingsActivity">
+    tools:context = ".EditActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Settings"
+            android:text="Editor"
             android:textColor="@color/main_text"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/avatarView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -45,7 +44,6 @@
                 android:src="@drawable/user_icon"/>
 
             <TextView
-                android:id="@+id/userNameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -76,40 +74,6 @@
                 android:paddingEnd="30dp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:background="@drawable/rounded_secondary_button_bg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:padding="15dp">
-                    //Account Password
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/round_back_yellow10_20"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_baseline_lock_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="50dp"
-                        android:text="Account Password"
-                        android:textColor="@color/main_text"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout >

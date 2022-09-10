@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     ImageView avatar;
     TextView userName;
     TextView description;
@@ -21,7 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         avatar = (ImageView) findViewById(R.id.avatarView);
         userName = (TextView) findViewById(R.id.userNameView);
-        description = (TextView) findViewById(R.id.descriptionView);
+       // description = (TextView) findViewById(R.id.descriptionView);
 
         if (firebaseAuth.getCurrentUser() != null) {
             userName.setText(firebaseAuth.getCurrentUser().getDisplayName());
