@@ -44,8 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         String bcryptHashString = dbHelper.getPassword(username);
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
         if (result.verified) {
-            SaveSharedPreference.setUsername(LoginActivity.this,username);
-            Log.i("username ",SaveSharedPreference.getUsername(LoginActivity.this));
+            SaveSharedPreference.setUserName(LoginActivity.this,username);
+            Log.i("username ",SaveSharedPreference.getUserName(LoginActivity.this));
             Utility.showToast(LoginActivity.this, "Login successful");
             startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
             finish();

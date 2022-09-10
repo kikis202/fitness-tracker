@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Log.e("username ", SaveSharedPreference.getUsername(MainActivity.this));
+        Log.e("username ", SaveSharedPreference.getUserName(MainActivity.this));
 
         BottomNavigationView mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         mBottomNavigationView.getMenu().findItem(R.id.home_nav).setChecked(false);

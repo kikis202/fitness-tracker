@@ -11,13 +11,13 @@ public class SaveSharedPreference {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }
 
-    public static void setUsername(Context ctx, String userName) {
+    public static void setUserName(Context ctx, String userName) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(USERNAME, userName);
         editor.commit();
     }
 
-    public static String getUsername(Context ctx) {
+    public static String getUserName(Context ctx) {
         return getSharedPreferences(ctx).getString(USERNAME, "");
     }
 }
