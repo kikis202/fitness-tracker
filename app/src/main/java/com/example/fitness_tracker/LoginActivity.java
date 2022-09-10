@@ -3,7 +3,6 @@ package com.example.fitness_tracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -14,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText emailEditText;
     private EditText usernameEditText, passwordEditText;
     private Button loginButton;
     private TextView createAccountButton;
@@ -26,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         dbHelper = new DBHelper(this);
-
         usernameEditText = (EditText) findViewById(R.id.username_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         loginButton = findViewById(R.id.submit_login_button);
@@ -75,15 +72,5 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
         return true;
-    }
-
-    void changeInProgress(boolean inProgress) {
-        if (inProgress) {
-            progressBar.setVisibility(View.VISIBLE);
-            loginButton.setVisibility(View.GONE);
-        } else {
-            progressBar.setVisibility(View.GONE);
-            loginButton.setVisibility(View.VISIBLE);
-        }
     }
 }

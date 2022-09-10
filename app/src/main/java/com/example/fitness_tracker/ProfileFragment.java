@@ -43,6 +43,7 @@ public class ProfileFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SaveSharedPreference.setUsername(ProfileFragment.super.getContext(),"");
                 Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
                 intent.putExtra("some", "User Logged Out");
                 startActivity(intent);
