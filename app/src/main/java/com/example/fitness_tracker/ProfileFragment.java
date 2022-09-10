@@ -2,11 +2,6 @@ package com.example.fitness_tracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 
 public class ProfileFragment extends Fragment {
@@ -23,13 +19,9 @@ public class ProfileFragment extends Fragment {
     TextView userName, description;
     private Button logout;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -37,29 +29,25 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
-
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
+        avatar = getView().findViewById(R.id.avatarView);
+        userName = getView().findViewById(R.id.userNameView);
+        description = getView().findViewById(R.id.descriptionView);
         logout = (Button) getView().findViewById(R.id.signOut);
 
+        userName.setText(SaveSharedPreference.getUserName(this.getContext()));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveSharedPreference.setUserName(getActivity(), "");
+                SaveSharedPreference.setUserName(ProfileFragment.super.getContext(),"");
                 Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
                 intent.putExtra("some", "User Logged Out");
                 startActivity(intent);
-
-
             }
         });
-
     }
 }
