@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+
 
 public class ProfileFragment extends Fragment {
     ImageView avatar;
@@ -41,9 +43,9 @@ public class ProfileFragment extends Fragment {
         logout = (Button) getView().findViewById(R.id.signOut);
         settings = (ImageView) getView().findViewById(R.id.profile_settings_button);
         DBHelper dbHelper = new DBHelper(this.getContext());
-        dbHelper.setDescription(SaveSharedPreference.getUserName(this.getContext()),"123");
         description.setText(dbHelper.getDescription(SaveSharedPreference.getUserName(this.getContext())));
         userName.setText(SaveSharedPreference.getUserName(this.getContext()));
+        Glide.with(this).load(dbHelper.getPic(SaveSharedPreference.getUserName(this.getContext()))).into(avatar);
         settings.setOnClickListener(v -> startActivity(new Intent(ProfileFragment.this.getContext(), SettingsActivity.class)));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +54,7 @@ public class ProfileFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
                 intent.putExtra("some", "User Logged Out");
                 startActivity(intent);
+
             }
         });
     }

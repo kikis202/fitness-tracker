@@ -44,6 +44,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/avatarView"
+            android:src="@drawable/user_icon"
             android:layout_width="156dp"
             android:layout_height="153dp"
             android:layout_alignParentStart="true"

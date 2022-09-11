@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public final static String DBNAME = "FitPlus.db";
@@ -235,6 +237,43 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("description", description);
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
+    }
+    @SuppressLint("Range")
+    public void setUsername(String username, String user_id) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("user_id", user_id);
+        myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
+        myDB.update("user", cv, "username=?", new String[]{username});
+    }
+    @SuppressLint("Range")
+    public void setPic(String username, String url) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("profile_pic_name", url);
+        myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
+    }
+    @SuppressLint("Range")
+    public void setPassword(String username, String password) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        cv.put("password", bcryptHashString);
+        myDB.update("user", cv, "username=?", new String[]{username});
+    }
+    @SuppressLint("Range")
+    public String getPic(String username) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String sql = "SELECT profile_pic_name FROM user_profiles WHERE user_id = ?";
+        Cursor cursor = myDB.rawQuery(sql, new String[]{username});
+        if (cursor.moveToFirst()) {
+            String text = cursor.getString(cursor.getColumnIndex("profile_pic_name"));
+            cursor.close();
+            myDB.close();
+            return text;
+        }
+        myDB.close();
+        return "";
     }
 
     @SuppressLint("Range")

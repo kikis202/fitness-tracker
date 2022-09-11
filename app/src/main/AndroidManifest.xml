@@ -19,6 +19,9 @@
             android:name=".ExerciseListActivity"
             android:exported="false" />
         <activity
+            android:name=".EditActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
