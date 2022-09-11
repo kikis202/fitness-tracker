@@ -16,14 +16,12 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(SaveSharedPreference.getUserName(SplashActivity.this).length() == 0)
+                if(SaveSharedPreference.getUserName(SplashActivity.this).length() != 0)
                 {
-                    // User isn't logged in -> create account screen
                     startActivity(new Intent(SplashActivity.this, CreateAccountActivity.class));
                 }
                 else
                 {
-                    // User already logged in -> main activity
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }
                 finish();

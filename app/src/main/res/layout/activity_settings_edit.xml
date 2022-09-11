@@ -14,6 +14,7 @@
         android:background="@color/black">
 
         <ImageView
+            android:id="@+id/back_to_settings"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="14dp"
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
+                android:id="@+id/avatarView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -44,6 +46,7 @@
                 android:src="@drawable/user_icon"/>
 
             <TextView
+                android:id="@+id/userNameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -56,24 +59,126 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="Password"
                 android:textColor="@color/main_text"
                 android:textSize="12sp"
                 android:layout_gravity="center"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/edit_save"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:paddingStart="30dp"
                 android:layout_gravity="center"
                 android:background="@drawable/round_back_secondary_100"
-                android:text="Edit Profile"
+                android:text="Save"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:paddingEnd="30dp"
                 android:textStyle="bold" />
+            <LinearLayout
+                android:background="@drawable/rounded_secondary_button_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="15dp">
+                //Profile Picture
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_yellow10_20"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_baseline_lock_24" />
+
+                    <EditText
+                        android:id="@+id/edit_profile_pic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:text="Profile Picture"
+                        android:textColor="@color/main_text"
+                        android:textStyle="bold" />
+                //Profile Picture
+                </RelativeLayout>
+                //Username
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_yellow10_20"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_baseline_lock_24" />
+
+                    <EditText
+                        android:id="@+id/edit_profile_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:text="Username"
+                        android:textColor="@color/main_text"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+                //Password
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_yellow10_20"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_baseline_lock_24" />
+
+                    <EditText
+                        android:id="@+id/edit_profile_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:text="Password"
+                        android:textColor="@color/main_text"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+                //Description
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/round_back_yellow10_20"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_baseline_lock_24" />
+
+                    <EditText
+                        android:id="@+id/edit_profile_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:text="Description"
+                        android:textColor="@color/main_text"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout >
