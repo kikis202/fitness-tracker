@@ -42,11 +42,5 @@ public class ExerciseListActivity extends AppCompatActivity {
 
         mAdapter = new ExerciseViewAdapter(exercises, ExerciseListActivity.this);
         recyclerView.setAdapter(mAdapter);
-
-
-
-
-
-        ArrayAdapter exerciseArrayAddapter = new ArrayAdapter<Exercise>(ExerciseListActivity.this, android.R.layout.simple_list_item_1);
     }
 }
