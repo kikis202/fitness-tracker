@@ -8,7 +8,14 @@
         <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/drawable/rounded_corner.xml" value="0.2515" />
         <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/activity_create_account.xml" value="0.24615384615384617" />
         <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/activity_profile_page.xml" value="0.55" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/activity_settings.xml" value="0.55" />
         <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/activity_workout_details.xml" value="0.47554806070826305" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/fragment_profile.xml" value="0.55" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/one_line_exercise.xml" value="0.55" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/one_line_workout_exercise.xml" value="0.55" />
+        <entry key="..\:/AndroidStudioProjects/Fitnesstracker/app/src/main/res/layout/one_line_workout_set.xml" value="0.5489583333333333" />
         <entry key="..\:/Users/danii/fitnes/fitness-tracker/app/src/main/res/layout/activity_create_account.xml" value="0.16979166666666667" />
         <entry key="..\:/Users/danii/fitnes/fitness-tracker/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/danii/fitness-tracker/app/src/main/res/layout/activity_create_account.xml" value="0.22826086956521738" />

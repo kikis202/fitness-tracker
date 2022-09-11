@@ -28,4 +28,20 @@ public class TrackingParameters {
     public boolean isTime() {
         return time;
     }
+
+    public void setReps(boolean reps) {
+        this.reps = reps;
+    }
+
+    public void setWeight(boolean weight) {
+        this.weight = weight;
+    }
+
+    public void setDistance(boolean distance) {
+        this.distance = distance;
+    }
+
+    public void setTime(boolean time) {
+        this.time = time;
+    }
 }
