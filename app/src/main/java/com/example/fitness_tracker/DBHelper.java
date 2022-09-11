@@ -172,13 +172,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean insertWorkoutSet(int workout_exercise_id) {
+    public int insertWorkoutSet(int workout_exercise_id) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("workout_exercise_id", workout_exercise_id);
         long result = myDB.insert("workout_sets", null, contentValues);
         myDB.close();
-        return result != -1;
+        return (int) result;
     }
 
     public boolean seedExercises(SQLiteDatabase myDB) {
@@ -306,6 +306,29 @@ public class DBHelper extends SQLiteOpenHelper {
         return "";
     }
 
+    public Exercise getExercise(int id) {
+        String sql = "SELECT * FROM exercises WHERE id = ?";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = myDB.rawQuery(sql, new String[]{String.valueOf(id)});
+
+        if (cursor.moveToFirst()) {
+            String title = cursor.getString(1);
+            String description = cursor.getString(2);
+            String imageName = cursor.getString(3);
+            int trackingTypeID = cursor.getInt(4);
+
+            cursor.close();
+            myDB.close();
+
+            return new Exercise(id, trackingTypeID, title, description, imageName);
+        }
+
+        cursor.close();
+        myDB.close();
+        return new Exercise();
+    }
+
     public List<Exercise> getExerciseList() {
         List<Exercise> returnList = new ArrayList<>();
 
@@ -329,5 +352,97 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         myDB.close();
         return returnList;
+    }
+
+    public List<WorkoutExercise> getWorkoutExerciseList(int workoutID) {
+        List<WorkoutExercise> returnList = new ArrayList<>();
+        if (workoutID == 0) return returnList;
+
+        String sql = "SELECT * FROM workout_exercises WHERE workout_id = ?";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = myDB.rawQuery(sql, new String[]{String.valueOf(workoutID)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Get all workout exercises
+                int id = cursor.getInt(0);
+                int exerciseID = cursor.getInt(2);
+
+                List<WorkoutSet> workoutSets = getWorkoutSets(id);
+                Exercise exercise = getExercise(exerciseID);
+                TrackingParameters trackingParameters = getExerciseTrackingParameters(exerciseID);
+
+                WorkoutExercise newExercise = new WorkoutExercise(id, workoutID, exerciseID, workoutSets, exercise.getTitle(), exercise.getImage_name(), trackingParameters);
+                returnList.add(newExercise);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        myDB.close();
+        return returnList;
+    }
+
+    public TrackingParameters getTrackingParameters(int id) {
+        String sql = "SELECT * FROM tracking_types WHERE id = ?";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        TrackingParameters trackingParameters = new TrackingParameters();
+
+        Cursor cursor = myDB.rawQuery(sql, new String[]{String.valueOf(id)});
+
+        if (cursor.moveToFirst()) {
+            boolean reps = cursor.getInt(1) == 1;
+            boolean weight = cursor.getInt(2) == 1;
+            boolean distance = cursor.getInt(3) == 1;
+            boolean time = cursor.getInt(4) == 1;
+            trackingParameters.setReps(reps);
+            trackingParameters.setWeight(weight);
+            trackingParameters.setDistance(distance);
+            trackingParameters.setTime(time);
+        }
+        cursor.close();
+        myDB.close();
+        return trackingParameters;
+    }
+
+    public TrackingParameters getExerciseTrackingParameters(int exerciseID) {
+        String sql = "SELECT tracking_type_id FROM exercises WHERE id = ?";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = myDB.rawQuery(sql, new String[]{String.valueOf(exerciseID)});
+
+        if (cursor.moveToFirst()) {
+            TrackingParameters trackingParameters = getTrackingParameters(cursor.getInt(0));
+            cursor.close();
+            myDB.close();
+            return trackingParameters;
+        }
+
+        cursor.close();
+        myDB.close();
+        return new TrackingParameters();
+    }
+
+    public List<WorkoutSet> getWorkoutSets(int workoutExerciseID) {
+        List<WorkoutSet> workoutSets = new ArrayList<>();
+
+        String sql = "SELECT * FROM workout_sets WHERE workout_exercise_id = ?";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(sql, new String[]{String.valueOf(workoutExerciseID)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                int reps = cursor.getInt(2);
+                int weight = cursor.getInt(3);
+                int distance = cursor.getInt(4);
+                int time = cursor.getInt(5);
+                WorkoutSet workoutSet = new WorkoutSet(id, workoutExerciseID, reps, weight, distance, time);
+                workoutSets.add(workoutSet);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        myDB.close();
+        return workoutSets;
     }
 }
