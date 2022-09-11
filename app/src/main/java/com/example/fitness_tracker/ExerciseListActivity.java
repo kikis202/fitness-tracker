@@ -1,18 +1,13 @@
 package com.example.fitness_tracker;
 
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseListActivity extends AppCompatActivity {
@@ -42,9 +37,6 @@ public class ExerciseListActivity extends AppCompatActivity {
 
         mAdapter = new ExerciseViewAdapter(exercises, ExerciseListActivity.this);
         recyclerView.setAdapter(mAdapter);
-
-
-
 
 
         ArrayAdapter exerciseArrayAddapter = new ArrayAdapter<Exercise>(ExerciseListActivity.this, android.R.layout.simple_list_item_1);

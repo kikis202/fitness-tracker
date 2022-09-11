@@ -153,7 +153,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public long insertWorkout(String username){
+    public long insertWorkout(String username) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_id", username);
@@ -234,6 +234,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put("description", description);
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
     }
+
     @SuppressLint("Range")
     public void setUsername(String username, String user_id) {
         SQLiteDatabase myDB = this.getWritableDatabase();
@@ -242,6 +243,7 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
         myDB.update("user", cv, "username=?", new String[]{username});
     }
+
     @SuppressLint("Range")
     public void setPic(String username, String url) {
         SQLiteDatabase myDB = this.getWritableDatabase();
@@ -249,6 +251,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put("profile_pic_name", url);
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
     }
+
     @SuppressLint("Range")
     public void setPassword(String username, String password) {
         SQLiteDatabase myDB = this.getWritableDatabase();
@@ -257,6 +260,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put("password", bcryptHashString);
         myDB.update("user", cv, "username=?", new String[]{username});
     }
+
     @SuppressLint("Range")
     public String getPic(String username) {
         SQLiteDatabase myDB = this.getWritableDatabase();

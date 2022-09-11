@@ -16,7 +16,7 @@ public class ExerciseSet {
         this.user_uid = user_uid;
     }
 
-    public void addTracking(String tracker, Integer value){
+    public void addTracking(String tracker, Integer value) {
         tracking.put(tracker, value);
     }
 

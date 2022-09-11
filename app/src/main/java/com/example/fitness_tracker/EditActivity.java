@@ -38,14 +38,15 @@ public class EditActivity extends AppCompatActivity {
         backToSettings.setOnClickListener(v -> startActivity(new Intent(EditActivity.this, SettingsActivity.class)));
         editSave.setOnClickListener(v -> saveData());
     }
-    public void saveData(){
+
+    public void saveData() {
         DBHelper dbHelper = new DBHelper(this);
-        dbHelper.setDescription(userNameShared,description.getText().toString());
-        dbHelper.setPassword(userNameShared,password.getText().toString());
+        dbHelper.setDescription(userNameShared, description.getText().toString());
+        dbHelper.setPassword(userNameShared, password.getText().toString());
         dbHelper.setUsername(userNameShared, userName.getText().toString());
-        dbHelper.setPic(userNameShared,profilePicture.getText().toString());
-        SaveSharedPreference.setUserName(this,userName.getText().toString());
+        dbHelper.setPic(userNameShared, profilePicture.getText().toString());
+        SaveSharedPreference.setUserName(this, userName.getText().toString());
         startActivity(new Intent(EditActivity.this, SettingsActivity.class));
-        Log.e("########",dbHelper.getDescription(userNameShared));
+        Log.e("########", dbHelper.getDescription(userNameShared));
     }
 }
