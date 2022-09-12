@@ -511,4 +511,46 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return workouts;
     }
+
+//        SQLiteDatabase myDB = this.getWritableDatabase();
+//        String sql = "SELECT password FROM users WHERE username = ?";
+//        Cursor cursor = myDB.rawQuery(sql, new String[]{username});
+//        if (cursor.moveToFirst()) {
+//            String hashedPassword = cursor.getString(cursor.getColumnIndex("password"));
+//            cursor.close();
+//            myDB.close();
+//            return hashedPassword;
+//        }
+//        myDB.close();
+//        return "";
+//
+    public void deleteSets(int workoutExerciseID, SQLiteDatabase myDB) {
+        myDB.delete("workout_sets", "workout_exercise_id = ?", new String[]{String.valueOf(workoutExerciseID)});
+    }
+
+    public void deleteWorkoutExercises(int workoutID, SQLiteDatabase myDB) {
+        String sql = "SELECT id FROM workout_exercises WHERE workout_id = ?";
+        Cursor cursor = myDB.rawQuery(sql, new String[]{String.valueOf(workoutID)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                deleteSets(id, myDB);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        myDB.delete("workout_exercises", "workout_id = ?", new String[]{String.valueOf(workoutID)});
+        System.out.println("exercise");
+    }
+
+    public void deleteWorkout(int id) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        deleteWorkoutExercises(id, myDB);
+
+        myDB.delete("workouts", "id = ?", new String[]{String.valueOf(id)});
+
+        myDB.close();
+        System.out.println("workout");
+    }
 }

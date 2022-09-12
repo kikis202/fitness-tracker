@@ -76,7 +76,7 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
     }
 
     public void deleteWorkout() {
-        // TODO: delete workout, workoutExercise, workoutSets from database
+        dbHelper.deleteWorkout(SaveSharedPreference.getActiveWorkoutID(WorkoutDetailsActivity.this));
         SaveSharedPreference.setActiveWorkoutID(WorkoutDetailsActivity.this, 0);
         startActivity(new Intent(WorkoutDetailsActivity.this, MainActivity.class));
         finish();
