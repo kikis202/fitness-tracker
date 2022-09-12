@@ -1,5 +1,6 @@
 package com.example.fitness_tracker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<WorkoutExercise> workoutExerciseList;
+    protected MyApp myApp;
 
     DBHelper dbHelper;
 
@@ -31,6 +33,8 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_details);
 
+
+
         addExerciseButton = findViewById(R.id.add_exercise_button);
         deleteWorkoutButton = findViewById(R.id.delete_workout_button);
         saveWorkoutButton = findViewById(R.id.save_workout_button);
@@ -39,7 +43,11 @@ public class WorkoutDetailsActivity extends AppCompatActivity {
         addExerciseButton.setOnClickListener(v -> openExerciseList());
         saveWorkoutButton.setOnClickListener(v -> saveWorkout());
         deleteWorkoutButton.setOnClickListener(v -> deleteWorkout());
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         recyclerView = findViewById(R.id.rv_workoutExercises);
         recyclerView.setHasFixedSize(true);
 

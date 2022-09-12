@@ -18,7 +18,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/checkBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        android:textColor="@color/main_text"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/edit_exerciseTracking2"
@@ -33,7 +35,9 @@
         app:layout_constraintEnd_toStartOf="@+id/checkBox"
         app:layout_constraintStart_toEndOf="@+id/edit_exerciseTracking1"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        android:textColor="@color/main_text"
+        android:gravity="center"/>
 
     <CheckBox
         android:id="@+id/checkBox"

@@ -1,5 +1,6 @@
 package com.example.fitness_tracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -18,8 +20,9 @@ import java.util.List;
 public class ExerciseViewAdapter extends RecyclerView.Adapter<ExerciseViewAdapter.MyViewHolder> {
     List<Exercise> exercises;
     Context context;
+    ExerciseListActivity activity;
 
-    public ExerciseViewAdapter(List<Exercise> exercises, Context context) {
+    public ExerciseViewAdapter(List<Exercise> exercises, ExerciseListActivity activity, Context context) {
         this.exercises = exercises;
         this.context = context;
     }
@@ -51,7 +54,11 @@ public class ExerciseViewAdapter extends RecyclerView.Adapter<ExerciseViewAdapte
         int wExId = (int) dbHelper.insertWorkoutExercise(SaveSharedPreference.getActiveWorkoutID(context), exerciseID);
         dbHelper.insertWorkoutSet(wExId);
 
-        context.startActivity(new Intent(context, WorkoutDetailsActivity.class));
+        Intent intent = new Intent();
+        intent.putExtra("return", "+");
+
+        ((Activity)context).setResult(Activity.RESULT_OK, intent);
+        ((Activity)context).finish();
     }
 
     @Override

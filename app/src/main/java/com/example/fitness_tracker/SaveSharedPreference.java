@@ -1,5 +1,6 @@
 package com.example.fitness_tracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;

@@ -2,14 +2,15 @@ package com.example.fitness_tracker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,8 +27,6 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -48,7 +47,7 @@ public class WorkoutFragment extends Fragment {
     void startEmptyWorkout() {
         DBHelper dbHelper = new DBHelper(getActivity());
         int id = (int) dbHelper.insertWorkout(SaveSharedPreference.getUserName(getActivity()));
-        SaveSharedPreference.setActiveWorkoutID(getActivity(), id);
+        SaveSharedPreference.setActiveWorkoutID(getActivity() , id);
 
 
         startActivity(new Intent(getActivity(), WorkoutDetailsActivity.class));
