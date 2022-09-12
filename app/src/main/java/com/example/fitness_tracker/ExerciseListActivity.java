@@ -31,6 +31,10 @@ public class ExerciseListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
+        reloadRV();
+    }
+
+    public void reloadRV() {
         recyclerView = findViewById(R.id.rv_exerciseList);
         recyclerView.setHasFixedSize(true);
 
@@ -40,7 +44,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(ExerciseListActivity.this);
         List<Exercise> exercises = dbHelper.getExerciseList();
 
-        mAdapter = new ExerciseViewAdapter(exercises, ExerciseListActivity.this);
+        mAdapter = new ExerciseViewAdapter(exercises, this, ExerciseListActivity.this);
         recyclerView.setAdapter(mAdapter);
     }
 }

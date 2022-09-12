@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -378,5 +380,59 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         myDB.close();
         return workoutSets;
+    }
+
+    public void updateWorkoutSet(String id, @NonNull int[] param) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        if (param.length > 0) {
+            ContentValues values = new ContentValues();
+            values.put("reps", param[0]);
+            values.put("weight", param[1]);
+            values.put("distance", param[2]);
+            values.put("time", param[3]);
+
+            myDB.update("workout_sets", values, "id = ?", new String[]{id});
+        }
+        myDB.close();
+    }
+
+    public List<Workout> getUserWorkouts(String username) {
+        List<Workout> workouts = new ArrayList<>();
+
+        String sql = "SELECT * FROM workouts WHERE user_id = ?";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(sql, new String[]{username});
+
+        if (cursor.moveToFirst()) {
+            do {
+                String timestamp = cursor.getString(2);
+                int id = cursor.getInt(0);
+
+                sql = "SELECT * FROM workout_exercises WHERE workout_id = ?";
+                Cursor c = myDB.rawQuery(sql, new String[]{String.valueOf(id)});
+                int exercise_count = c.getCount();
+
+                int set_count = 0;
+
+                if (c.moveToFirst()) {
+                    do {
+                        int w_ex_id = c.getInt(0);
+                        sql = "SELECT * FROM workout_sets WHERE workout_exercise_id = ?";
+                        Cursor c2 = myDB.rawQuery(sql, new String[]{String.valueOf(w_ex_id)});
+
+                        set_count += c2.getCount();
+                        c2.close();
+                    } while (c.moveToNext());
+                }
+                c.close();
+
+                Workout workout = new Workout(username, timestamp, set_count, exercise_count);
+                workouts.add(workout);
+            } while (cursor.moveToNext());
+        }
+
+        myDB.close();
+        cursor.close();
+        return workouts;
     }
 }
