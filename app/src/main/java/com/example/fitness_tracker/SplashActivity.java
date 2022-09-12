@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (SaveSharedPreference.getUserName(SplashActivity.this).length() != 0) {
+                if (SaveSharedPreference.getUserName(SplashActivity.this).length() == 0) {
                     startActivity(new Intent(SplashActivity.this, CreateAccountActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
