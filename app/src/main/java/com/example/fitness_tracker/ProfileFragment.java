@@ -45,7 +45,9 @@ public class ProfileFragment extends Fragment {
         DBHelper dbHelper = new DBHelper(this.getContext());
         description.setText(dbHelper.getDescription(SaveSharedPreference.getUserName(this.getContext())));
         userName.setText(SaveSharedPreference.getUserName(this.getContext()));
+
         Glide.with(this).load(dbHelper.getPic(SaveSharedPreference.getUserName(this.getContext()))).into(avatar);
+
         settings.setOnClickListener(v -> startActivity(new Intent(ProfileFragment.this.getContext(), SettingsActivity.class)));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

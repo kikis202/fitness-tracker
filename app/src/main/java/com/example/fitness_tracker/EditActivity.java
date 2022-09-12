@@ -41,11 +41,21 @@ public class EditActivity extends AppCompatActivity {
 
     public void saveData() {
         DBHelper dbHelper = new DBHelper(this);
-        dbHelper.setDescription(userNameShared, description.getText().toString());
-        dbHelper.setPassword(userNameShared, password.getText().toString());
-        dbHelper.setUsername(userNameShared, userName.getText().toString());
-        dbHelper.setPic(userNameShared, profilePicture.getText().toString());
-        SaveSharedPreference.setUserName(this, userName.getText().toString());
+        String sDescription = description.getText().toString();
+        if (!sDescription.equals("")) dbHelper.setDescription(userNameShared, sDescription);
+
+        String sPassword = password.getText().toString();
+        if (!sPassword.equals("")) dbHelper.setPassword(userNameShared, sPassword);
+
+        String sUsername = userName.getText().toString();
+        if (!sUsername.equals("")) {
+            dbHelper.setUsername(userNameShared, sUsername);
+            SaveSharedPreference.setUserName(this, sUsername);
+        }
+
+        String sPPic = profilePicture.getText().toString();
+        if (!sPPic.equals("")) dbHelper.setPic(userNameShared, sPPic);
+
         startActivity(new Intent(EditActivity.this, SettingsActivity.class));
         Log.e("########", dbHelper.getDescription(userNameShared));
     }

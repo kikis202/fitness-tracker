@@ -68,15 +68,16 @@
                 android:id="@+id/edit_save"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:paddingStart="30dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/round_back_secondary_100"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
                 android:text="Save"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:paddingEnd="30dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
             <LinearLayout
                 android:background="@drawable/rounded_secondary_button_bg"
                 android:layout_width="match_parent"
@@ -104,9 +105,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="50dp"
-                        android:text="Profile Picture"
+                        android:hint="Profile Picture url"
                         android:textColor="@color/main_text"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="TouchTargetSizeCheck" />
                 //Profile Picture
                 </RelativeLayout>
                 //Username
@@ -128,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="50dp"
-                        android:text="Username"
+                        android:hint="@string/username_hint"
                         android:textColor="@color/main_text"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -151,9 +153,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="50dp"
-                        android:text="Password"
+                        android:hint="@string/password_hint"
+                        android:inputType="textPassword"
                         android:textColor="@color/main_text"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </RelativeLayout>
                 //Description
                 <RelativeLayout
@@ -174,9 +178,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="50dp"
-                        android:text="Description"
+                        android:hint="Description"
                         android:textColor="@color/main_text"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

@@ -235,6 +235,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("description", description);
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
+        myDB.close();
     }
 
     @SuppressLint("Range")
@@ -242,8 +243,15 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("user_id", user_id);
+
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
-        myDB.update("user", cv, "username=?", new String[]{username});
+        myDB.update("workouts", cv, "user_id=?", new String[]{username});
+
+        cv = new ContentValues();
+        cv.put("username", user_id);
+
+        myDB.update("users", cv, "username=?", new String[]{username});
+        myDB.close();
     }
 
     @SuppressLint("Range")
@@ -252,6 +260,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put("profile_pic_name", url);
         myDB.update("user_profiles", cv, "user_id=?", new String[]{username});
+        myDB.close();
     }
 
     @SuppressLint("Range")
@@ -260,7 +269,8 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         cv.put("password", bcryptHashString);
-        myDB.update("user", cv, "username=?", new String[]{username});
+        myDB.update("users", cv, "username=?", new String[]{username});
+        myDB.close();
     }
 
     @SuppressLint("Range")

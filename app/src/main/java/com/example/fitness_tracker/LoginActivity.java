@@ -43,7 +43,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!isValid) return;
         // Gets hashed password from db and verifies it
+
         String bcryptHashString = dbHelper.getPassword(username);
+        if (bcryptHashString.isEmpty()) {
+            Utility.showToast(LoginActivity.this, "User not registered");
+            return;
+        }
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
         if (result.verified) {
             SaveSharedPreference.setUserName(LoginActivity.this, username);
